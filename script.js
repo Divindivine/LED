@@ -2,9 +2,15 @@ var rowValue;
 var delayValue;
 var rounds;
 var interval_Id;
+var forStart = false;
+let rowSub = 0;
+let delSub = 0;
 
 function rowFunction(){
-    let row = document.getElementById('rowinput');
+    rowSub = 1;
+    if(delSub === 1){
+        forStart = true;
+    }    let row = document.getElementById('rowinput');
     if(row.value === ""){
         row.value = 5;
     }
@@ -47,6 +53,10 @@ function mainBodyBuilding(row,delay){
 }
 
 function delayFunction(){
+    delSub = 1;
+    if(rowSub === 1){
+        forStart = true;
+    }
     let delay = document.getElementById('delayinput');
     if(delay.value === ""){
         delay.value = 1;
@@ -54,71 +64,74 @@ function delayFunction(){
     delayValue = delay.value;
 }
 
-// function startFunction(){
-//     let totalRows = document.getElementsByClassName('rows');
-//     function coloring(rounds){
-//         for(elem of rounds){
-//             elem.style.background = 'red';
-//         }
-//     }
-//     for(let item of totalRows){
-//         let rounds = item.children;
-//         for(elem of rounds){
-//             setInterval(() => coloring(rounds), 2000);
-//         }
-        
-//     }
-// }
 
 function startFunction() {
-    let totalRows = document.getElementsByClassName('rows');
-    let currentRow = 0;
+    if(forStart){
+        forStart = false;
+        var startview = document.getElementById('start_button');
+        startview.style.opacity = '0';
+        var mainview = document.getElementsByClassName('main_container');
+        mainview[0].style.display = 'flex';
+        var stopview = document.getElementById('stop_button');
+        stopview.style.opacity = '1';
+        let totalRows = document.getElementsByClassName('rows');
+        let currentRow = 0;
 
-    function coloringred(row) {
+        function coloringred(row) {
         
-        for (let rows of totalRows) {
-            for (let elem of rows.children) {
-                elem.style.background = 'white';
-            }
-        }
-
-        rounds = row.children;
-        for (let elem of rounds) {
-            elem.style.background = 'red';
-         
-        }
-        if(totalRows.length === 1){
-            function forSingle(){
-                for(let elem of rounds){
+            for (let rows of totalRows) {
+                for (let elem of rows.children) {
                     elem.style.background = 'white';
                 }
             }
-            function forSingle2(){
-                for(let elem of rounds){
-                    elem.style.background = 'red';
-                }
-                setInterval(forSingle, delayValue * 1000);
+
+            rounds = row.children;
+            for (let elem of rounds) {
+                elem.style.background = 'red';
+         
             }
+            // if(totalRows.length === 1){
+            //     function forSingle(){
+            //         for(let elem of rounds){
+            //             elem.style.background = 'white';
+            //         }
+            //     }
+            //     function forSingle2(){
+            //         for(let elem of rounds){
+            //             elem.style.background = 'red';
+            //         }
+            //         setInterval(forSingle, delayValue * 100);
+            //     }
             
-            setInterval(forSingle2, delayValue * 1000);
+            //     setInterval(forSingle2, delayValue * 100);
             
+            // }
         }
+    
+    
+
+        function changeRow() {
+            coloringred(totalRows[currentRow]); 
+            currentRow = (currentRow + 1) % totalRows.length
+            // if (currentRow < totalRows.length) {
+            //     coloringred(totalRows[currentRow]);           
+            //     currentRow++;
+            // } 
+            // else {
+            //     currentRow = 0;
+            // }
+        }
+        interval_Id = setInterval(changeRow, delayValue * 100);
     }
 
-    function changeRow() {
-
-        if (currentRow < totalRows.length) {
-            coloringred(totalRows[currentRow]);           
-            currentRow++;
-        } else {
-            currentRow = 0;
-        }
-    }
-    interval_Id = setInterval(changeRow, delayValue * 1000);
 }
-
-
 function stopFunction(){
     clearInterval(interval_Id);
+    var stopview = document.getElementById('stop_button');
+    stopview.style.opacity = '0';
+    forStart = true;
+    var startview = document.getElementById('start_button');
+    startview.style.opacity = '1';
 }
+
 

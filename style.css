@@ -20,32 +20,38 @@ body {
 
 header {
   position: fixed;
-  top: 0;
+  top: 5px;
   width: 100%;
   background: black;
 }
 
 .header-first{
-  width: 100%;
-  padding: 0 25px;
+  width: calc( 100% - 10px);
+  max-width: 1000px;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: gray;
+  margin: auto;
+  border-radius: 15px;
 }
 
 .button_field {
   display: flex;
   justify-content: flex-start;
   gap: 10%;
-  padding: 50px;
+  padding: 30px;
 }
 
 .button_field button {
   padding: 5px 10px;
-  border-radius: 40%;
+  border-radius: 15px;
   font-size: 20px;
   font-weight: 600;
   background: white;
+  width: 100px;
+  height: 50px;
 }
 
 .button_field button:active{
@@ -115,6 +121,7 @@ main {
     flex-direction: column;
     gap: 20px;
     border-radius: 15px;
+    display: none;
 }
 
 .rows{
@@ -129,4 +136,12 @@ main {
     height: 25px;
     background: white;
     border-radius: 50%;
+}
+
+#start_button{
+  opacity: 1;
+}
+
+#stop_button{
+  opacity: 0;
 }
