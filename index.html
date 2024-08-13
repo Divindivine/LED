@@ -9,22 +9,34 @@
 <body>
     <div class="whole">
         <header>
-            <div class="button_field">
-                <button>Start</button>
-                <button>Stop</button>
+            <div class="header-first">
+                <div class="button_field">
+                    <button onclick="startFunction()" id="start_button">Start</button>
+                    <button onclick="stopFunction()" id="stop_button">Stop</button>
+                </div>
+                <div class="input_field">
+                    <div class="input_field_first">
+                        <input id="rowinput" type="number" placeholder="rows: 5">
+                        <input id="delayinput" type="number" placeholder="delay: 1s">
+                    </div>
+                    <div class="input_field_second">
+                        <button onclick="rowFunction()" >SUBMIT</button>
+                        <button onclick="delayFunction()">SUBMIT</button>
+                    </div>
+                </div>
             </div>
         </header>
         <main>
-            <div class="main_body">
+            <div class="main_body">            
                 <div class="main_container">
-                    <div class="rows">
+                    <!-- <div class="rows">
                         <div class="round"></div>
                     </div>
                     <div class="rows">
                         <div class="round"></div>
                         <div class="round"></div>
                         <div class="round"></div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </main>
@@ -32,5 +44,4 @@
     <script src="script.js"></script>
 </body>
 </html>
-
 
